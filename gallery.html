@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gallery | Sweet Crust Bakery</title>
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: { bakery: { light: '#FDFBF7', dark: '#3A2618', primary: '#E07A5F', accent: '#F2CC8F' } },
+                    fontFamily: { serif: ['"Playfair Display"', 'serif'], sans: ['Poppins', 'sans-serif'] }
+                }
+            }
+        }
+    </script>
+    <style>
+        body { font-family: 'Poppins', sans-serif; background-color: #FDFBF7; color: #3A2618; }
+        .masonry-grid { column-count: 1; column-gap: 1rem; }
+        @media (min-width: 768px) { .masonry-grid { column-count: 2; } }
+        @media (min-width: 1024px) { .masonry-grid { column-count: 3; } }
+        .masonry-item { break-inside: avoid; margin-bottom: 1rem; }
+    </style>
+</head>
+<body class="antialiased">
+
+    <!-- Simple Nav -->
+    <nav class="w-full bg-white border-b border-gray-200">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex justify-between items-center h-20">
+            <a href="index.html" class="text-2xl font-serif font-bold text-bakery-dark">
+                <i class="fa-solid fa-wheat-awn text-bakery-primary"></i> Sweet Crust
+            </a>
+            <a href="index.html" class="text-gray-600 hover:text-bakery-primary transition"><i class="fa-solid fa-arrow-left"></i> Back to Home</a>
+        </div>
+    </nav>
+
+    <!-- Header -->
+    <header class="py-20 text-center bg-bakery-light">
+        <h1 class="text-5xl md:text-6xl font-serif font-bold text-bakery-dark mb-4 gs-fade">Our Creations</h1>
+        <p class="text-lg text-gray-600 max-w-2xl mx-auto gs-fade">Browse through our gallery of mouth-watering pastries, artisan breads, and custom-designed cakes.</p>
+    </header>
+
+    <!-- Gallery Grid -->
+    <section class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+        <div class="masonry-grid">
+            <!-- Items injected via JS for cleaner code layout, but here is the HTML structure -->
+            <div class="masonry-item relative group overflow-hidden rounded-2xl cursor-pointer gs-img">
+                <img src="https://images.unsplash.com/photo-1483695028939-5bb13f8648b0?auto=format&fit=crop&w=800&q=80" alt="Baking" class="w-full object-cover transform group-hover:scale-110 transition duration-700">
+                <div class="absolute inset-0 bg-black/50 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
+                    <span class="text-white font-serif text-2xl font-bold">Artisan Loaf</span>
+                </div>
+            </div>
+            <div class="masonry-item relative group overflow-hidden rounded-2xl cursor-pointer gs-img">
+                <img src="https://images.unsplash.com/photo-1579697096985-41fe1430e5d6?auto=format&fit=crop&w=800&q=80" alt="Donuts" class="w-full object-cover transform group-hover:scale-110 transition duration-700">
+            </div>
+            <div class="masonry-item relative group overflow-hidden rounded-2xl cursor-pointer gs-img">
+                <img src="https://images.unsplash.com/photo-1542826438-bd32f43d626f?auto=format&fit=crop&w=800&q=80" alt="Bread" class="w-full object-cover transform group-hover:scale-110 transition duration-700">
+            </div>
+            <div class="masonry-item relative group overflow-hidden rounded-2xl cursor-pointer gs-img">
+                <img src="https://images.unsplash.com/photo-1612203985729-70726954388c?auto=format&fit=crop&w=800&q=80" alt="Pastry" class="w-full object-cover transform group-hover:scale-110 transition duration-700">
+            </div>
+            <div class="masonry-item relative group overflow-hidden rounded-2xl cursor-pointer gs-img">
+                <img src="https://images.unsplash.com/photo-1550617931-e17a7b70dce2?auto=format&fit=crop&w=800&q=80" alt="Cake" class="w-full object-cover transform group-hover:scale-110 transition duration-700">
+            </div>
+             <div class="masonry-item relative group overflow-hidden rounded-2xl cursor-pointer gs-img">
+                <img src="https://images.unsplash.com/photo-1608198093002-ad4e005484ec?auto=format&fit=crop&w=800&q=80" alt="Croissant" class="w-full object-cover transform group-hover:scale-110 transition duration-700">
+            </div>
+            <div class="masonry-item relative group overflow-hidden rounded-2xl cursor-pointer gs-img">
+                <img src="https://images.unsplash.com/photo-1535141192574-5d4897c12636?auto=format&fit=crop&w=800&q=80" alt="Birthday Cake" class="w-full object-cover transform group-hover:scale-110 transition duration-700">
+            </div>
+        </div>
+    </section>
+
+    <!-- GSAP -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <script>
+        gsap.from(".gs-fade", { y: 30, opacity: 0, duration: 1, stagger: 0.2 });
+        gsap.from(".gs-img", { y: 50, opacity: 0, duration: 0.8, stagger: 0.1, delay: 0.5 });
+    </script>
+</body>
+</html>
