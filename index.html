@@ -990,6 +990,158 @@
             transition-delay: 0.15s;
             /* Allows box to open slightly before text fades in */
         }
+        /* --- CONTACT SECTION CINEMATIC & 3D EFFECTS --- */
+        .contact-perspective {
+            perspective: 1500px;
+            transform-style: preserve-3d;
+        }
+
+        .contact-ambient-glow {
+            animation: contactPulse 12s infinite alternate ease-in-out;
+            will-change: transform, opacity;
+        }
+
+        @keyframes contactPulse {
+            0% { transform: scale(1) translate(0px, 0px); opacity: 0.5; }
+            100% { transform: scale(1.2) translate(50px, 50px); opacity: 0.8; }
+        }
+
+        /* Contact Info Block Hover Physics */
+        .contact-info-block {
+            transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1), background-color 0.4s ease, box-shadow 0.6s ease;
+            transform-style: preserve-3d;
+            border: 1px solid transparent;
+        }
+
+        .contact-info-block:hover {
+            background-color: #ffffff;
+            box-shadow: 0 15px 30px -10px rgba(212, 163, 115, 0.15);
+            border-color: rgba(212, 163, 115, 0.2);
+            transform: scale(1.02) translateZ(10px);
+        }
+
+        .contact-icon-3d {
+            transition: transform 0.6s cubic-bezier(0.34, 1.56, 0.64, 1), text-shadow 0.4s ease, color 0.4s ease;
+            will-change: transform;
+        }
+
+        .contact-info-block:hover .contact-icon-3d {
+            transform: scale(1.25) translateY(-3px) translateZ(15px);
+            text-shadow: 0 8px 15px rgba(212, 163, 115, 0.5);
+            color: #8B5E3C;
+        }
+
+        .contact-text-3d {
+            transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        .contact-info-block:hover .contact-text-3d {
+            transform: translateZ(20px);
+        }
+
+        /* 3D Glass Form Container */
+        .contact-form-3d {
+            transform-style: preserve-3d;
+            will-change: transform, box-shadow;
+            transition: transform 0.8s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.8s ease, border-color 0.5s ease;
+        }
+
+        .contact-form-3d:hover {
+            box-shadow: 0 30px 60px -15px rgba(74, 44, 26, 0.2), inset 0 0 20px rgba(255, 255, 255, 0.5);
+            border-color: rgba(255, 255, 255, 1);
+        }
+
+        .contact-form-inner {
+            transform: translateZ(25px);
+            transition: transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+            transform-style: preserve-3d;
+        }
+
+        .contact-form-3d:hover .contact-form-inner {
+            transform: translateZ(40px);
+        }
+
+        /* Cinematic Glare Sweep */
+        .contact-glass-glare {
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(105deg, rgba(255, 255, 255, 0) 20%, rgba(255, 255, 255, 0.6) 50%, rgba(255, 255, 255, 0) 80%);
+            transform: translateX(-150%) skewX(-15deg);
+            pointer-events: none;
+            transition: transform 1s cubic-bezier(0.16, 1, 0.3, 1);
+            z-index: 1;
+        }
+
+        .contact-form-3d:hover .contact-glass-glare,
+        .contact-map-3d:hover .contact-glass-glare {
+            transform: translateX(150%) skewX(-15deg);
+        }
+
+        /* Map 3D Physics */
+        .contact-map-3d {
+            transform-style: preserve-3d;
+            transition: transform 0.8s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.8s ease;
+            will-change: transform;
+        }
+
+        .contact-map-3d:hover {
+            box-shadow: 0 25px 50px -15px rgba(74, 44, 26, 0.25), inset 0 0 15px rgba(212, 163, 115, 0.1);
+        }
+
+        .contact-map-inner {
+            transition: transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        .contact-map-3d:hover .contact-map-inner {
+            transform: translateZ(25px) scale(1.03);
+        }
+
+        /* Premium Input Fields */
+        .contact-input {
+            transition: box-shadow 0.4s ease, border-color 0.4s ease, transform 0.4s cubic-bezier(0.16, 1, 0.3, 1), background-color 0.4s ease;
+            will-change: transform, box-shadow;
+        }
+
+        .contact-input:focus {
+            background-color: #ffffff;
+            border-color: #D4A373;
+            box-shadow: 0 10px 25px -5px rgba(212, 163, 115, 0.25), inset 0 2px 5px rgba(74, 44, 26, 0.02);
+            transform: scale(1.02) translateZ(10px);
+        }
+
+        /* Floating Label Interactions */
+        .contact-label {
+            transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1), color 0.4s ease, opacity 0.4s ease;
+            transform-origin: left bottom;
+            will-change: transform, color;
+        }
+
+        .contact-label.is-focused {
+            color: #8B5E3C;
+            transform: translateY(-3px) scale(1.05);
+            opacity: 1;
+        }
+
+        /* Submit Button 3D Effects */
+        .contact-btn-submit {
+            transform-style: preserve-3d;
+            transition: transform 0.5s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.5s ease, background-color 0.3s ease;
+            will-change: transform;
+        }
+
+        .contact-btn-submit:hover {
+            transform: perspective(600px) translateZ(35px) scale(1.02);
+            box-shadow: 0 20px 40px -10px rgba(74, 44, 26, 0.4);
+            background-color: #8B5E3C;
+        }
+
+        .contact-btn-submit i {
+            transition: transform 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+        }
+
+        .contact-btn-submit:hover i {
+            transform: translateX(5px) scale(1.2);
+        }
     </style>
 </head>
 
@@ -1957,84 +2109,100 @@
     </section>
 
     <!-- 11. CONTACT SECTION -->
-    <section id="contact" class="py-24 bg-cream relative">
-        <div class="max-w-7xl mx-auto px-6 lg:px-16 flex flex-col lg:flex-row gap-16">
+    <section id="contact" class="py-24 bg-cream relative contact-perspective overflow-hidden">
+        
+        <!-- Ambient Luxury Glow Background -->
+        <div class="absolute w-[600px] h-[600px] bg-caramel/10 rounded-full blur-[100px] top-0 left-[-200px] pointer-events-none mix-blend-multiply contact-ambient-glow"></div>
+
+        <div class="max-w-7xl mx-auto px-6 lg:px-16 flex flex-col lg:flex-row gap-16 relative z-10">
 
             <!-- Contact Info & Map -->
-            <div class="w-full lg:w-1/2 gsap-fade-up">
-                <h2 class="font-playfair text-4xl lg:text-5xl text-chocolate mb-6">Visit Our Bakery</h2>
-                <p class="text-softbrown mb-10">Step into our aromatic kitchen to pick up your daily treats, or drop us
-                    a message to plan your next event.</p>
+            <div class="w-full lg:w-1/2 contact-left-panel">
+                <h2 class="contact-anim-el font-playfair text-4xl lg:text-5xl text-chocolate mb-6">Visit Our Bakery</h2>
+                <p class="contact-anim-el text-softbrown mb-10">Step into our aromatic kitchen to pick up your daily treats, or drop us a message to plan your next event.</p>
 
-                <div class="space-y-6 mb-10">
-                    <div class="flex items-start gap-4">
-                        <i class="fa-solid fa-location-dot mt-1 text-caramel text-xl"></i>
-                        <div>
+                <div class="space-y-6 mb-10 contact-anim-el">
+                    <div class="flex items-start gap-4 contact-info-block group p-4 -ml-4 rounded-2xl">
+                        <div class="contact-icon-wrapper">
+                            <i class="fa-solid fa-location-dot mt-1 text-caramel text-xl contact-icon-3d"></i>
+                        </div>
+                        <div class="contact-text-3d">
                             <h4 class="font-medium text-chocolate">Address</h4>
-                            <p class="text-softbrown text-sm">124 Artisan Ave, Pastry District<br>New York, NY 10012</p>
+                            <p class="text-softbrown text-sm transition-colors duration-300 group-hover:text-chocolate">124 Artisan Ave, Pastry District<br>New York, NY 10012</p>
                         </div>
                     </div>
-                    <div class="flex items-start gap-4">
-                        <i class="fa-solid fa-clock mt-1 text-caramel text-xl"></i>
-                        <div>
+                    <div class="flex items-start gap-4 contact-info-block group p-4 -ml-4 rounded-2xl">
+                        <div class="contact-icon-wrapper">
+                            <i class="fa-solid fa-clock mt-1 text-caramel text-xl contact-icon-3d"></i>
+                        </div>
+                        <div class="contact-text-3d">
                             <h4 class="font-medium text-chocolate">Opening Hours</h4>
-                            <p class="text-softbrown text-sm">Mon - Fri: 7:00 AM - 6:00 PM<br>Sat - Sun: 8:00 AM - 4:00
-                                PM</p>
+                            <p class="text-softbrown text-sm transition-colors duration-300 group-hover:text-chocolate">Mon - Fri: 7:00 AM - 6:00 PM<br>Sat - Sun: 8:00 AM - 4:00 PM</p>
                         </div>
                     </div>
-                    <div class="flex items-start gap-4">
-                        <i class="fa-solid fa-phone mt-1 text-caramel text-xl"></i>
-                        <div>
+                    <div class="flex items-start gap-4 contact-info-block group p-4 -ml-4 rounded-2xl">
+                        <div class="contact-icon-wrapper">
+                            <i class="fa-solid fa-phone mt-1 text-caramel text-xl contact-icon-3d"></i>
+                        </div>
+                        <div class="contact-text-3d">
                             <h4 class="font-medium text-chocolate">Contact</h4>
-                            <p class="text-softbrown text-sm">+1 (555) 123-4567<br>hello@aurabakery.com</p>
+                            <p class="text-softbrown text-sm transition-colors duration-300 group-hover:text-chocolate">+1 (555) 123-4567<br>hello@aurabakery.com</p>
                         </div>
                     </div>
                 </div>
 
-                <!-- Google Map Placeholder (Functional iframe) -->
-                <div class="w-full h-48 rounded-2xl overflow-hidden shadow-lg border border-beige">
-                    <iframe
-                        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3023.493922114757!2d-74.00488668459449!3d40.72915837932971!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x89c2599026416629%3A0xc47e3d11b33b0067!2sWashington%20Square%20Park!5e0!3m2!1sen!2sus!4v1648753235372!5m2!1sen!2sus"
-                        width="100%" height="100%" style="border:0;" allowfullscreen="" loading="lazy"
-                        referrerpolicy="no-referrer-when-downgrade"></iframe>
+                <!-- Google Map Container -->
+                <div class="contact-anim-el contact-map-3d w-full h-48 rounded-2xl overflow-hidden shadow-lg border border-beige group relative">
+                    <div class="contact-glass-glare z-10"></div>
+                    <div class="contact-map-inner w-full h-full relative z-0">
+                        <iframe
+                            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3023.493922114757!2d-74.00488668459449!3d40.72915837932971!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x89c2599026416629%3A0xc47e3d11b33b0067!2sWashington%20Square%20Park!5e0!3m2!1sen!2sus!4v1648753235372!5m2!1sen!2sus"
+                            width="100%" height="100%" style="border:0;" allowfullscreen="" loading="lazy"
+                            referrerpolicy="no-referrer-when-downgrade" class="pointer-events-none"></iframe>
+                    </div>
                 </div>
             </div>
 
             <!-- Form -->
-            <div class="w-full lg:w-1/2 bg-white p-10 rounded-3xl shadow-xl border border-beige gsap-fade-up"
-                style="transition-delay: 200ms;">
-                <h3 class="font-playfair text-3xl text-chocolate mb-8">Send a Message</h3>
-                <form class="space-y-6" onsubmit="event.preventDefault();">
-                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-                        <div>
-                            <label class="block text-sm text-softbrown mb-2 font-medium">First Name</label>
-                            <input type="text"
-                                class="w-full bg-cream px-4 py-3 rounded-xl border border-beige focus:outline-none focus:border-caramel focus:ring-1 focus:ring-caramel transition-colors"
-                                placeholder="Jane">
+            <div class="w-full lg:w-1/2 contact-form-3d relative bg-white/80 backdrop-blur-xl p-10 rounded-3xl shadow-[0_20px_40px_-15px_rgba(74,44,26,0.1)] border border-white/60">
+                <div class="contact-glass-glare rounded-3xl z-0"></div>
+                <div class="contact-form-inner relative z-10">
+                    <h3 class="contact-form-el font-playfair text-3xl text-chocolate mb-8 drop-shadow-sm">Send a Message</h3>
+                    <form class="space-y-6" onsubmit="event.preventDefault();">
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                            <div class="contact-form-el relative">
+                                <label class="contact-label block text-sm text-softbrown mb-2 font-medium">First Name</label>
+                                <input type="text"
+                                    class="contact-input w-full bg-cream/50 px-4 py-3 rounded-xl border border-beige focus:outline-none transition-all"
+                                    placeholder="Jane">
+                            </div>
+                            <div class="contact-form-el relative">
+                                <label class="contact-label block text-sm text-softbrown mb-2 font-medium">Last Name</label>
+                                <input type="text"
+                                    class="contact-input w-full bg-cream/50 px-4 py-3 rounded-xl border border-beige focus:outline-none transition-all"
+                                    placeholder="Doe">
+                            </div>
                         </div>
-                        <div>
-                            <label class="block text-sm text-softbrown mb-2 font-medium">Last Name</label>
-                            <input type="text"
-                                class="w-full bg-cream px-4 py-3 rounded-xl border border-beige focus:outline-none focus:border-caramel focus:ring-1 focus:ring-caramel transition-colors"
-                                placeholder="Doe">
+                        <div class="contact-form-el relative">
+                            <label class="contact-label block text-sm text-softbrown mb-2 font-medium">Email Address</label>
+                            <input type="email"
+                                class="contact-input w-full bg-cream/50 px-4 py-3 rounded-xl border border-beige focus:outline-none transition-all"
+                                placeholder="jane@example.com">
                         </div>
-                    </div>
-                    <div>
-                        <label class="block text-sm text-softbrown mb-2 font-medium">Email Address</label>
-                        <input type="email"
-                            class="w-full bg-cream px-4 py-3 rounded-xl border border-beige focus:outline-none focus:border-caramel focus:ring-1 focus:ring-caramel transition-colors"
-                            placeholder="jane@example.com">
-                    </div>
-                    <div>
-                        <label class="block text-sm text-softbrown mb-2 font-medium">Message</label>
-                        <textarea rows="4"
-                            class="w-full bg-cream px-4 py-3 rounded-xl border border-beige focus:outline-none focus:border-caramel focus:ring-1 focus:ring-caramel transition-colors"
-                            placeholder="How can we help you?"></textarea>
-                    </div>
-                    <button type="submit"
-                        class="w-full bg-chocolate text-cream py-4 rounded-xl font-medium hover:bg-softbrown transition-colors shadow-lg btn-primary">Send
-                        Inquiry</button>
-                </form>
+                        <div class="contact-form-el relative">
+                            <label class="contact-label block text-sm text-softbrown mb-2 font-medium">Message</label>
+                            <textarea rows="4"
+                                class="contact-input w-full bg-cream/50 px-4 py-3 rounded-xl border border-beige focus:outline-none transition-all"
+                                placeholder="How can we help you?"></textarea>
+                        </div>
+                        <div class="contact-form-el pt-2">
+                            <button type="submit"
+                                class="contact-btn-submit w-full bg-chocolate text-cream py-4 rounded-xl font-medium shadow-lg transition-all flex justify-center items-center gap-2">
+                                Send Inquiry <i class="fa-solid fa-arrow-right text-sm"></i>
+                            </button>
+                        </div>
+                    </form>
+                </div>
             </div>
         </div>
     </section>
@@ -2144,6 +2312,110 @@
 
     <script>
         window.addEventListener('load', () => {
+            // --- CONTACT SECTION: CINEMATIC REVEALS & 3D PHYSICS ---
+
+        // 1. Enter Reveal: Zoom, Fade, and Optical Blur (No sliding)
+        const contactEnterTl = gsap.timeline({
+            scrollTrigger: {
+                trigger: "#contact",
+                start: "top 75%",
+                toggleActions: "play none none reverse"
+            }
+        });
+
+        // Left Panel Reveal (Text, Info Blocks, Map)
+        contactEnterTl.fromTo(".contact-anim-el", 
+            { opacity: 0, scale: 0.95, filter: "blur(12px)" },
+            { 
+                opacity: 1, 
+                scale: 1, 
+                filter: "blur(0px)", 
+                duration: 1.4, 
+                stagger: 0.15, 
+                ease: "power3.out",
+                clearProps: "transform,filter" 
+            }
+        )
+        // Right Panel Reveal (Form Wrapper)
+        .fromTo(".contact-form-3d", 
+            { opacity: 0, scale: 0.9, filter: "blur(15px)", rotateX: -5 },
+            { 
+                opacity: 1, 
+                scale: 1, 
+                filter: "blur(0px)", 
+                rotateX: 0, 
+                duration: 1.6, 
+                ease: "power3.out",
+                clearProps: "transform,filter" // Hand over to CSS hover
+            }, 
+            "-=1.2"
+        )
+        // Staggered Form Elements Inside
+        .fromTo(".contact-form-el", 
+            { opacity: 0, scale: 0.95, filter: "blur(5px)" },
+            { opacity: 1, scale: 1, filter: "blur(0px)", duration: 1.0, stagger: 0.1, ease: "power2.out" }, 
+            "-=1.0"
+        );
+
+        // 2. Interactive 3D Depth on Map and Form
+        const contact3DCards = document.querySelectorAll('.contact-map-3d, .contact-form-3d');
+        contact3DCards.forEach(card => {
+            card.addEventListener('mousemove', (e) => {
+                if (window.innerWidth < 768) return; // Optimize for desktop
+                
+                const rect = card.getBoundingClientRect();
+                const x = e.clientX - rect.left;
+                const y = e.clientY - rect.top;
+                const centerX = rect.width / 2;
+                const centerY = rect.height / 2;
+
+                // Ultra-smooth, cinematic tracking
+                const rotateX = ((y - centerY) / centerY) * -5;
+                const rotateY = ((x - centerX) / centerX) * 5;
+
+                card.style.transform = `perspective(1200px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) scale3d(1.02, 1.02, 1.02)`;
+            });
+
+            card.addEventListener('mouseleave', () => {
+                if (window.innerWidth < 768) return;
+                // Return to flat state via CSS transition
+                card.style.transform = `perspective(1200px) rotateX(0deg) rotateY(0deg) scale3d(1, 1, 1)`;
+            });
+        });
+
+        // 3. Immersive Input Field Micro-Interactions (Label Floating)
+        const contactInputs = document.querySelectorAll('.contact-input');
+        contactInputs.forEach(input => {
+            // Find the associated label
+            const label = input.previousElementSibling;
+
+            input.addEventListener('focus', () => {
+                if(label && label.classList.contains('contact-label')) {
+                    label.classList.add('is-focused');
+                }
+            });
+
+            input.addEventListener('blur', () => {
+                if(label && label.classList.contains('contact-label') && input.value.trim() === "") {
+                    // Only remove float effect if input is empty
+                    label.classList.remove('is-focused');
+                }
+            });
+        });
+
+        // 4. Scroll Exit (Fade Out, Deep Zoom Out)
+        gsap.to(".contact-perspective", {
+            scale: 0.95,
+            opacity: 0,
+            filter: "blur(12px)",
+            ease: "none",
+            scrollTrigger: {
+                trigger: "#contact",
+                start: "bottom 95%",
+                end: "bottom top",
+                scrub: 1
+            }
+        });
             // --- MENU SECTION: NON-SLIDING CINEMATIC ANIMATIONS ---
 
             // 1. Entrance (Fades, Zooms, Optical Blurs, and 3D Flips ONLY)
