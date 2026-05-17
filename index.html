@@ -990,6 +990,7 @@
             transition-delay: 0.15s;
             /* Allows box to open slightly before text fades in */
         }
+
         /* --- CONTACT SECTION CINEMATIC & 3D EFFECTS --- */
         .contact-perspective {
             perspective: 1500px;
@@ -1002,8 +1003,15 @@
         }
 
         @keyframes contactPulse {
-            0% { transform: scale(1) translate(0px, 0px); opacity: 0.5; }
-            100% { transform: scale(1.2) translate(50px, 50px); opacity: 0.8; }
+            0% {
+                transform: scale(1) translate(0px, 0px);
+                opacity: 0.5;
+            }
+
+            100% {
+                transform: scale(1.2) translate(50px, 50px);
+                opacity: 0.8;
+            }
         }
 
         /* Contact Info Block Hover Physics */
@@ -1141,6 +1149,97 @@
 
         .contact-btn-submit:hover i {
             transform: translateX(5px) scale(1.2);
+        }
+
+        /* --- 12. NEWSLETTER CINEMATIC & 3D EFFECTS --- */
+
+        .newsletter-perspective {
+            perspective: 1200px;
+            transform-style: preserve-3d;
+        }
+
+        /* Ambient Background Panning */
+        .nl-bg-anim {
+            background-size: 200% 200%;
+            animation: panLuxuryGradient 15s ease-in-out infinite alternate;
+        }
+
+        @keyframes panLuxuryGradient {
+            0% {
+                background-position: 0% 50%;
+                opacity: 0.85;
+            }
+
+            100% {
+                background-position: 100% 50%;
+                opacity: 1;
+            }
+        }
+
+        /* Enhanced Floating Ambient Blob */
+        .nl-ambient-blob {
+            animation: floatNLBlob 12s infinite alternate cubic-bezier(0.4, 0, 0.2, 1);
+            will-change: transform, opacity;
+            filter: blur(90px);
+        }
+
+        @keyframes floatNLBlob {
+            0% {
+                transform: translate(-50%, -50%) scale(0.9);
+                opacity: 0.15;
+            }
+
+            100% {
+                transform: translate(-45%, -55%) scale(1.2);
+                opacity: 0.35;
+            }
+        }
+
+        /* 3D Form Container */
+        .nl-form-3d {
+            transform-style: preserve-3d;
+            transition: transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+            will-change: transform;
+        }
+
+        /* Premium Input Enhancements */
+        .nl-input-3d {
+            transition: all 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+            transform-style: preserve-3d;
+            transform: translateZ(10px);
+            will-change: transform, box-shadow, background-color;
+        }
+
+        .nl-input-3d:focus {
+            transform: translateZ(25px) scale(1.02);
+            background-color: rgba(255, 255, 255, 0.15);
+            box-shadow: 0 15px 35px -10px rgba(0, 0, 0, 0.3), inset 0 0 20px rgba(255, 255, 255, 0.15);
+        }
+
+        /* Elegant Placeholder Micro-Interaction */
+        .nl-input-3d::placeholder {
+            transition: opacity 0.4s ease, transform 0.4s ease;
+        }
+
+        .nl-input-3d:focus::placeholder {
+            opacity: 0.3;
+            transform: translateX(8px);
+        }
+
+        /* Button Cinematic 3D Elevate & Glow */
+        .nl-btn-3d {
+            transform-style: preserve-3d;
+            transition: all 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+            transform: translateZ(15px);
+            will-change: transform, box-shadow;
+        }
+
+        .nl-btn-3d:hover {
+            transform: translateZ(40px) scale(1.04);
+            /* Overriding Tailwind utilities for a much richer, layered glow */
+            box-shadow: 0 25px 40px -10px rgba(0, 0, 0, 0.4), 0 0 35px rgba(255, 255, 255, 0.8) !important;
+            color: #4A2C1A !important;
+            text-shadow: 0 0 1px rgba(74, 44, 26, 0.2);
         }
     </style>
 </head>
@@ -2110,16 +2209,19 @@
 
     <!-- 11. CONTACT SECTION -->
     <section id="contact" class="py-24 bg-cream relative contact-perspective overflow-hidden">
-        
+
         <!-- Ambient Luxury Glow Background -->
-        <div class="absolute w-[600px] h-[600px] bg-caramel/10 rounded-full blur-[100px] top-0 left-[-200px] pointer-events-none mix-blend-multiply contact-ambient-glow"></div>
+        <div
+            class="absolute w-[600px] h-[600px] bg-caramel/10 rounded-full blur-[100px] top-0 left-[-200px] pointer-events-none mix-blend-multiply contact-ambient-glow">
+        </div>
 
         <div class="max-w-7xl mx-auto px-6 lg:px-16 flex flex-col lg:flex-row gap-16 relative z-10">
 
             <!-- Contact Info & Map -->
             <div class="w-full lg:w-1/2 contact-left-panel">
                 <h2 class="contact-anim-el font-playfair text-4xl lg:text-5xl text-chocolate mb-6">Visit Our Bakery</h2>
-                <p class="contact-anim-el text-softbrown mb-10">Step into our aromatic kitchen to pick up your daily treats, or drop us a message to plan your next event.</p>
+                <p class="contact-anim-el text-softbrown mb-10">Step into our aromatic kitchen to pick up your daily
+                    treats, or drop us a message to plan your next event.</p>
 
                 <div class="space-y-6 mb-10 contact-anim-el">
                     <div class="flex items-start gap-4 contact-info-block group p-4 -ml-4 rounded-2xl">
@@ -2128,7 +2230,8 @@
                         </div>
                         <div class="contact-text-3d">
                             <h4 class="font-medium text-chocolate">Address</h4>
-                            <p class="text-softbrown text-sm transition-colors duration-300 group-hover:text-chocolate">124 Artisan Ave, Pastry District<br>New York, NY 10012</p>
+                            <p class="text-softbrown text-sm transition-colors duration-300 group-hover:text-chocolate">
+                                124 Artisan Ave, Pastry District<br>New York, NY 10012</p>
                         </div>
                     </div>
                     <div class="flex items-start gap-4 contact-info-block group p-4 -ml-4 rounded-2xl">
@@ -2137,7 +2240,8 @@
                         </div>
                         <div class="contact-text-3d">
                             <h4 class="font-medium text-chocolate">Opening Hours</h4>
-                            <p class="text-softbrown text-sm transition-colors duration-300 group-hover:text-chocolate">Mon - Fri: 7:00 AM - 6:00 PM<br>Sat - Sun: 8:00 AM - 4:00 PM</p>
+                            <p class="text-softbrown text-sm transition-colors duration-300 group-hover:text-chocolate">
+                                Mon - Fri: 7:00 AM - 6:00 PM<br>Sat - Sun: 8:00 AM - 4:00 PM</p>
                         </div>
                     </div>
                     <div class="flex items-start gap-4 contact-info-block group p-4 -ml-4 rounded-2xl">
@@ -2146,13 +2250,15 @@
                         </div>
                         <div class="contact-text-3d">
                             <h4 class="font-medium text-chocolate">Contact</h4>
-                            <p class="text-softbrown text-sm transition-colors duration-300 group-hover:text-chocolate">+1 (555) 123-4567<br>hello@aurabakery.com</p>
+                            <p class="text-softbrown text-sm transition-colors duration-300 group-hover:text-chocolate">
+                                +1 (555) 123-4567<br>hello@aurabakery.com</p>
                         </div>
                     </div>
                 </div>
 
                 <!-- Google Map Container -->
-                <div class="contact-anim-el contact-map-3d w-full h-48 rounded-2xl overflow-hidden shadow-lg border border-beige group relative">
+                <div
+                    class="contact-anim-el contact-map-3d w-full h-48 rounded-2xl overflow-hidden shadow-lg border border-beige group relative">
                     <div class="contact-glass-glare z-10"></div>
                     <div class="contact-map-inner w-full h-full relative z-0">
                         <iframe
@@ -2164,27 +2270,32 @@
             </div>
 
             <!-- Form -->
-            <div class="w-full lg:w-1/2 contact-form-3d relative bg-white/80 backdrop-blur-xl p-10 rounded-3xl shadow-[0_20px_40px_-15px_rgba(74,44,26,0.1)] border border-white/60">
+            <div
+                class="w-full lg:w-1/2 contact-form-3d relative bg-white/80 backdrop-blur-xl p-10 rounded-3xl shadow-[0_20px_40px_-15px_rgba(74,44,26,0.1)] border border-white/60">
                 <div class="contact-glass-glare rounded-3xl z-0"></div>
                 <div class="contact-form-inner relative z-10">
-                    <h3 class="contact-form-el font-playfair text-3xl text-chocolate mb-8 drop-shadow-sm">Send a Message</h3>
+                    <h3 class="contact-form-el font-playfair text-3xl text-chocolate mb-8 drop-shadow-sm">Send a Message
+                    </h3>
                     <form class="space-y-6" onsubmit="event.preventDefault();">
                         <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
                             <div class="contact-form-el relative">
-                                <label class="contact-label block text-sm text-softbrown mb-2 font-medium">First Name</label>
+                                <label class="contact-label block text-sm text-softbrown mb-2 font-medium">First
+                                    Name</label>
                                 <input type="text"
                                     class="contact-input w-full bg-cream/50 px-4 py-3 rounded-xl border border-beige focus:outline-none transition-all"
                                     placeholder="Jane">
                             </div>
                             <div class="contact-form-el relative">
-                                <label class="contact-label block text-sm text-softbrown mb-2 font-medium">Last Name</label>
+                                <label class="contact-label block text-sm text-softbrown mb-2 font-medium">Last
+                                    Name</label>
                                 <input type="text"
                                     class="contact-input w-full bg-cream/50 px-4 py-3 rounded-xl border border-beige focus:outline-none transition-all"
                                     placeholder="Doe">
                             </div>
                         </div>
                         <div class="contact-form-el relative">
-                            <label class="contact-label block text-sm text-softbrown mb-2 font-medium">Email Address</label>
+                            <label class="contact-label block text-sm text-softbrown mb-2 font-medium">Email
+                                Address</label>
                             <input type="email"
                                 class="contact-input w-full bg-cream/50 px-4 py-3 rounded-xl border border-beige focus:outline-none transition-all"
                                 placeholder="jane@example.com">
@@ -2208,23 +2319,36 @@
     </section>
 
     <!-- 12. NEWSLETTER -->
-    <section id="newsletter" class="py-24 bg-chocolate relative overflow-hidden">
-        <div class="absolute inset-0 bg-gradient-to-r from-chocolate to-softbrown opacity-90 z-0"></div>
+    <section id="newsletter" class="py-24 bg-chocolate relative overflow-hidden newsletter-perspective">
+
+        <!-- Animated Background Gradient -->
+        <div class="absolute inset-0 bg-gradient-to-r from-chocolate to-softbrown opacity-90 z-0 nl-bg-anim"></div>
+
+        <!-- Ambient Floating Luxury Blob -->
         <div
-            class="blob bg-caramel w-96 h-96 rounded-full top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 opacity-30 z-0 mix-blend-screen">
+            class="blob bg-caramel w-96 h-96 rounded-full top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 opacity-30 z-0 mix-blend-screen nl-ambient-blob">
         </div>
 
         <div class="max-w-4xl mx-auto px-6 relative z-10 text-center">
-            <h2 class="font-playfair text-4xl lg:text-5xl text-cream mb-4">Get sweet updates & exclusive offers.</h2>
-            <p class="text-beige/80 mb-10 text-lg">Join our newsletter to receive weekly pastry menus and secret
-                discounts.</p>
 
-            <form class="flex flex-col sm:flex-row max-w-xl mx-auto gap-4" onsubmit="event.preventDefault();">
+            <!-- Cinematic Text Elements -->
+            <h2 class="font-playfair text-4xl lg:text-5xl text-cream mb-4 nl-text-anim">Get sweet updates & exclusive
+                offers.</h2>
+            <p class="text-beige/80 mb-10 text-lg nl-text-anim">Join our newsletter to receive weekly pastry menus and
+                secret discounts.</p>
+
+            <!-- 3D Interactive Form Container -->
+            <form class="flex flex-col sm:flex-row max-w-xl mx-auto gap-4 nl-form-3d"
+                onsubmit="event.preventDefault();">
+
+                <!-- Immersive Input Field -->
                 <input type="email"
-                    class="flex-1 bg-white/10 backdrop-blur-md border border-white/20 text-cream px-6 py-4 rounded-full focus:outline-none focus:border-caramel placeholder-beige/50"
+                    class="flex-1 bg-white/10 backdrop-blur-md border border-white/20 text-cream px-6 py-4 rounded-full focus:outline-none focus:border-caramel placeholder-beige/50 nl-input-3d"
                     placeholder="Enter your email address...">
+
+                <!-- Premium Hover Button -->
                 <button
-                    class="bg-caramel text-chocolate px-8 py-4 rounded-full font-bold hover:bg-white transition-colors shadow-[0_0_20px_rgba(212,163,115,0.4)] hover:shadow-[0_0_30px_rgba(255,255,255,0.6)]">Subscribe</button>
+                    class="bg-caramel text-chocolate px-8 py-4 rounded-full font-bold hover:bg-white transition-colors shadow-[0_0_20px_rgba(212,163,115,0.4)] hover:shadow-[0_0_30px_rgba(255,255,255,0.6)] nl-btn-3d">Subscribe</button>
             </form>
         </div>
     </section>
@@ -2312,110 +2436,180 @@
 
     <script>
         window.addEventListener('load', () => {
+            // --- NEWSLETTER SECTION: CINEMATIC BLURS, ZOOMS & 3D HOVER ---
+
+            // 1. Enter Reveal: Cinematic Zoom, Fade, and Optical Blur (No sliding)
+            const nlEnterTl = gsap.timeline({
+                scrollTrigger: {
+                    trigger: "#newsletter",
+                    start: "top 75%",
+                    toggleActions: "play none none reverse"
+                }
+            });
+
+            // Heading and Subtext Reveal
+            nlEnterTl.fromTo(".nl-text-anim",
+                { opacity: 0, scale: 0.9, filter: "blur(15px)" },
+                { opacity: 1, scale: 1, filter: "blur(0px)", duration: 1.6, stagger: 0.2, ease: "power3.out" }
+            )
+                // Form Floating Emergence
+                .fromTo(".nl-form-3d",
+                    { opacity: 0, scale: 0.95, filter: "blur(12px)", rotateX: -10 },
+                    {
+                        opacity: 1,
+                        scale: 1,
+                        filter: "blur(0px)",
+                        rotateX: 0,
+                        duration: 1.6,
+                        ease: "power3.out",
+                        clearProps: "transform" // Releases back to CSS for hover physics
+                    },
+                    "-=1.2"
+                );
+
+            // 2. Immersive 3D Depth Tracking on Form
+            const nlForm = document.querySelector('.nl-form-3d');
+            if (nlForm) {
+                nlForm.addEventListener('mousemove', (e) => {
+                    if (window.innerWidth < 768) return; // Disables complex physics on mobile
+
+                    const rect = nlForm.getBoundingClientRect();
+                    const x = e.clientX - rect.left;
+                    const y = e.clientY - rect.top;
+                    const centerX = rect.width / 2;
+                    const centerY = rect.height / 2;
+
+                    // Subtle, extremely smooth perspective tracking
+                    const rotateX = ((y - centerY) / centerY) * -6;
+                    const rotateY = ((x - centerX) / centerX) * 6;
+
+                    nlForm.style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg)`;
+                });
+
+                nlForm.addEventListener('mouseleave', () => {
+                    if (window.innerWidth < 768) return;
+                    // Softly returns to center via CSS transition
+                    nlForm.style.transform = `perspective(1000px) rotateX(0deg) rotateY(0deg)`;
+                });
+            }
+
+            // 3. Scroll Exit (Elegant Fade Out & Deep Background Zoom)
+            gsap.to(".newsletter-perspective", {
+                scale: 0.92,
+                opacity: 0,
+                filter: "blur(15px)",
+                ease: "none",
+                scrollTrigger: {
+                    trigger: "#newsletter",
+                    start: "bottom 85%",
+                    end: "bottom top",
+                    scrub: 1
+                }
+            });
             // --- CONTACT SECTION: CINEMATIC REVEALS & 3D PHYSICS ---
 
-        // 1. Enter Reveal: Zoom, Fade, and Optical Blur (No sliding)
-        const contactEnterTl = gsap.timeline({
-            scrollTrigger: {
-                trigger: "#contact",
-                start: "top 75%",
-                toggleActions: "play none none reverse"
-            }
-        });
-
-        // Left Panel Reveal (Text, Info Blocks, Map)
-        contactEnterTl.fromTo(".contact-anim-el", 
-            { opacity: 0, scale: 0.95, filter: "blur(12px)" },
-            { 
-                opacity: 1, 
-                scale: 1, 
-                filter: "blur(0px)", 
-                duration: 1.4, 
-                stagger: 0.15, 
-                ease: "power3.out",
-                clearProps: "transform,filter" 
-            }
-        )
-        // Right Panel Reveal (Form Wrapper)
-        .fromTo(".contact-form-3d", 
-            { opacity: 0, scale: 0.9, filter: "blur(15px)", rotateX: -5 },
-            { 
-                opacity: 1, 
-                scale: 1, 
-                filter: "blur(0px)", 
-                rotateX: 0, 
-                duration: 1.6, 
-                ease: "power3.out",
-                clearProps: "transform,filter" // Hand over to CSS hover
-            }, 
-            "-=1.2"
-        )
-        // Staggered Form Elements Inside
-        .fromTo(".contact-form-el", 
-            { opacity: 0, scale: 0.95, filter: "blur(5px)" },
-            { opacity: 1, scale: 1, filter: "blur(0px)", duration: 1.0, stagger: 0.1, ease: "power2.out" }, 
-            "-=1.0"
-        );
-
-        // 2. Interactive 3D Depth on Map and Form
-        const contact3DCards = document.querySelectorAll('.contact-map-3d, .contact-form-3d');
-        contact3DCards.forEach(card => {
-            card.addEventListener('mousemove', (e) => {
-                if (window.innerWidth < 768) return; // Optimize for desktop
-                
-                const rect = card.getBoundingClientRect();
-                const x = e.clientX - rect.left;
-                const y = e.clientY - rect.top;
-                const centerX = rect.width / 2;
-                const centerY = rect.height / 2;
-
-                // Ultra-smooth, cinematic tracking
-                const rotateX = ((y - centerY) / centerY) * -5;
-                const rotateY = ((x - centerX) / centerX) * 5;
-
-                card.style.transform = `perspective(1200px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) scale3d(1.02, 1.02, 1.02)`;
-            });
-
-            card.addEventListener('mouseleave', () => {
-                if (window.innerWidth < 768) return;
-                // Return to flat state via CSS transition
-                card.style.transform = `perspective(1200px) rotateX(0deg) rotateY(0deg) scale3d(1, 1, 1)`;
-            });
-        });
-
-        // 3. Immersive Input Field Micro-Interactions (Label Floating)
-        const contactInputs = document.querySelectorAll('.contact-input');
-        contactInputs.forEach(input => {
-            // Find the associated label
-            const label = input.previousElementSibling;
-
-            input.addEventListener('focus', () => {
-                if(label && label.classList.contains('contact-label')) {
-                    label.classList.add('is-focused');
+            // 1. Enter Reveal: Zoom, Fade, and Optical Blur (No sliding)
+            const contactEnterTl = gsap.timeline({
+                scrollTrigger: {
+                    trigger: "#contact",
+                    start: "top 75%",
+                    toggleActions: "play none none reverse"
                 }
             });
 
-            input.addEventListener('blur', () => {
-                if(label && label.classList.contains('contact-label') && input.value.trim() === "") {
-                    // Only remove float effect if input is empty
-                    label.classList.remove('is-focused');
+            // Left Panel Reveal (Text, Info Blocks, Map)
+            contactEnterTl.fromTo(".contact-anim-el",
+                { opacity: 0, scale: 0.95, filter: "blur(12px)" },
+                {
+                    opacity: 1,
+                    scale: 1,
+                    filter: "blur(0px)",
+                    duration: 1.4,
+                    stagger: 0.15,
+                    ease: "power3.out",
+                    clearProps: "transform,filter"
+                }
+            )
+                // Right Panel Reveal (Form Wrapper)
+                .fromTo(".contact-form-3d",
+                    { opacity: 0, scale: 0.9, filter: "blur(15px)", rotateX: -5 },
+                    {
+                        opacity: 1,
+                        scale: 1,
+                        filter: "blur(0px)",
+                        rotateX: 0,
+                        duration: 1.6,
+                        ease: "power3.out",
+                        clearProps: "transform,filter" // Hand over to CSS hover
+                    },
+                    "-=1.2"
+                )
+                // Staggered Form Elements Inside
+                .fromTo(".contact-form-el",
+                    { opacity: 0, scale: 0.95, filter: "blur(5px)" },
+                    { opacity: 1, scale: 1, filter: "blur(0px)", duration: 1.0, stagger: 0.1, ease: "power2.out" },
+                    "-=1.0"
+                );
+
+            // 2. Interactive 3D Depth on Map and Form
+            const contact3DCards = document.querySelectorAll('.contact-map-3d, .contact-form-3d');
+            contact3DCards.forEach(card => {
+                card.addEventListener('mousemove', (e) => {
+                    if (window.innerWidth < 768) return; // Optimize for desktop
+
+                    const rect = card.getBoundingClientRect();
+                    const x = e.clientX - rect.left;
+                    const y = e.clientY - rect.top;
+                    const centerX = rect.width / 2;
+                    const centerY = rect.height / 2;
+
+                    // Ultra-smooth, cinematic tracking
+                    const rotateX = ((y - centerY) / centerY) * -5;
+                    const rotateY = ((x - centerX) / centerX) * 5;
+
+                    card.style.transform = `perspective(1200px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) scale3d(1.02, 1.02, 1.02)`;
+                });
+
+                card.addEventListener('mouseleave', () => {
+                    if (window.innerWidth < 768) return;
+                    // Return to flat state via CSS transition
+                    card.style.transform = `perspective(1200px) rotateX(0deg) rotateY(0deg) scale3d(1, 1, 1)`;
+                });
+            });
+
+            // 3. Immersive Input Field Micro-Interactions (Label Floating)
+            const contactInputs = document.querySelectorAll('.contact-input');
+            contactInputs.forEach(input => {
+                // Find the associated label
+                const label = input.previousElementSibling;
+
+                input.addEventListener('focus', () => {
+                    if (label && label.classList.contains('contact-label')) {
+                        label.classList.add('is-focused');
+                    }
+                });
+
+                input.addEventListener('blur', () => {
+                    if (label && label.classList.contains('contact-label') && input.value.trim() === "") {
+                        // Only remove float effect if input is empty
+                        label.classList.remove('is-focused');
+                    }
+                });
+            });
+
+            // 4. Scroll Exit (Fade Out, Deep Zoom Out)
+            gsap.to(".contact-perspective", {
+                scale: 0.95,
+                opacity: 0,
+                filter: "blur(12px)",
+                ease: "none",
+                scrollTrigger: {
+                    trigger: "#contact",
+                    start: "bottom 95%",
+                    end: "bottom top",
+                    scrub: 1
                 }
             });
-        });
-
-        // 4. Scroll Exit (Fade Out, Deep Zoom Out)
-        gsap.to(".contact-perspective", {
-            scale: 0.95,
-            opacity: 0,
-            filter: "blur(12px)",
-            ease: "none",
-            scrollTrigger: {
-                trigger: "#contact",
-                start: "bottom 95%",
-                end: "bottom top",
-                scrub: 1
-            }
-        });
             // --- MENU SECTION: NON-SLIDING CINEMATIC ANIMATIONS ---
 
             // 1. Entrance (Fades, Zooms, Optical Blurs, and 3D Flips ONLY)
