@@ -519,6 +519,83 @@
         .cake-btn-3d:hover i {
             transform: scale(1.2);
         }
+
+        /* --- MENU SECTION 3D & HOVER EFFECTS (No Sliding) --- */
+        .menu-card-3d {
+            perspective: 1200px;
+            transform-style: preserve-3d;
+        }
+
+        .menu-card-inner {
+            transform-style: preserve-3d;
+            will-change: transform, box-shadow;
+            transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.6s ease, border-color 0.4s ease, background-color 0.4s ease;
+            border: 1px solid rgba(139, 94, 60, 0.1);
+            /* Soft beige border */
+        }
+
+        .menu-card-inner:hover {
+            box-shadow: 0 30px 60px -15px rgba(212, 163, 115, 0.25), inset 0 0 20px rgba(212, 163, 115, 0.05);
+            border-color: rgba(212, 163, 115, 0.5);
+            /* Caramel border glow */
+            background-color: #ffffff;
+        }
+
+        /* 3D Pop inside the card */
+        .menu-content-pop {
+            transform: translateZ(20px);
+            transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        .menu-card-inner:hover .menu-content-pop {
+            transform: translateZ(45px);
+            /* Pops content closer to the screen */
+        }
+
+        /* Item Hover Effect (Scaling & Glow Only - No Slide) */
+        .menu-item-hover {
+            transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+            transform-origin: center center;
+            border-radius: 8px;
+            padding: 4px 8px;
+            margin: -4px -8px;
+            /* Offset padding to prevent layout shift */
+        }
+
+        .menu-item-hover:hover {
+            transform: scale(1.04) translateZ(10px);
+            background-color: rgba(212, 163, 115, 0.05);
+        }
+
+        .menu-item-hover:hover span:first-child {
+            color: #4A2C1A;
+            /* Dark chocolate */
+            font-weight: 500;
+        }
+
+        .menu-item-hover:hover .price-glow {
+            color: #8B5E3C;
+            text-shadow: 0 0 12px rgba(212, 163, 115, 0.5);
+            /* Premium glowing price */
+            transform: scale(1.1);
+        }
+
+        /* Download Button 3D Effect */
+        .menu-btn-3d {
+            transform-style: preserve-3d;
+            /* Changed 'all' to specific properties to stop fighting GSAP */
+            transition: transform 0.5s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.5s ease, background-color 0.5s ease, color 0.5s ease, border-color 0.5s ease;
+            will-change: transform;
+            background-color: transparent;
+        }
+
+        .menu-btn-3d:hover {
+            transform: perspective(600px) translateZ(40px) scale(1.05);
+            box-shadow: 0 25px 40px -10px rgba(74, 44, 26, 0.3), inset 0 0 15px rgba(255, 255, 255, 0.2);
+            background-color: #4A2C1A;
+            color: #FFF8F0;
+            border-color: #4A2C1A;
+        }
     </style>
 </head>
 
@@ -987,83 +1064,140 @@
         </div>
     </section>
     <!-- 6. MENU PREVIEW -->
-    <section id="menu" class="py-24 bg-white">
+    <section id="menu" class="py-24 bg-white relative overflow-hidden perspective-container">
         <div class="max-w-7xl mx-auto px-6 lg:px-16">
-            <div class="text-center mb-16 gsap-fade-up">
-                <h2 class="font-playfair text-4xl lg:text-5xl text-chocolate mb-4">Everyday Delights</h2>
-                <div class="w-16 h-1 bg-caramel mx-auto rounded"></div>
+
+            <div class="text-center mb-16">
+                <h2 class="menu-anim-heading font-playfair text-4xl lg:text-5xl text-chocolate mb-4 origin-center">
+                    Everyday Delights</h2>
+                <div class="menu-anim-divider w-16 h-1 bg-caramel mx-auto rounded origin-center"></div>
             </div>
 
-            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+            <div class="menu-card-container grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 perspective-container">
+
                 <!-- Category 1 -->
-                <div
-                    class="border border-beige rounded-3xl p-8 hover:shadow-xl transition-shadow bg-cream gsap-fade-up">
-                    <h3 class="font-playfair text-2xl text-chocolate border-b border-chocolate/10 pb-4 mb-4">Bread</h3>
-                    <ul class="space-y-4">
-                        <li class="flex justify-between items-center"><span class="text-softbrown">French
-                                Baguette</span><span class="text-caramel font-medium">$4</span></li>
-                        <li class="flex justify-between items-center"><span class="text-softbrown">Rye
-                                Sourdough</span><span class="text-caramel font-medium">$8</span></li>
-                        <li class="flex justify-between items-center"><span class="text-softbrown">Olive
-                                Ciabatta</span><span class="text-caramel font-medium">$6</span></li>
-                        <li class="flex justify-between items-center"><span class="text-softbrown">Brioche
-                                Loaf</span><span class="text-caramel font-medium">$9</span></li>
-                    </ul>
+                <div class="menu-card-3d">
+                    <div class="menu-card-inner rounded-3xl p-8 bg-cream h-full relative">
+                        <div class="menu-content-pop relative z-10">
+                            <h3 class="font-playfair text-2xl text-chocolate border-b border-chocolate/10 pb-4 mb-4">
+                                Bread</h3>
+                            <ul class="space-y-4">
+                                <li class="menu-item-hover flex justify-between items-center"><span
+                                        class="text-softbrown transition-colors duration-300">French
+                                        Baguette</span><span
+                                        class="text-caramel font-medium price-glow transition-all duration-300">$4</span>
+                                </li>
+                                <li class="menu-item-hover flex justify-between items-center"><span
+                                        class="text-softbrown transition-colors duration-300">Rye Sourdough</span><span
+                                        class="text-caramel font-medium price-glow transition-all duration-300">$8</span>
+                                </li>
+                                <li class="menu-item-hover flex justify-between items-center"><span
+                                        class="text-softbrown transition-colors duration-300">Olive Ciabatta</span><span
+                                        class="text-caramel font-medium price-glow transition-all duration-300">$6</span>
+                                </li>
+                                <li class="menu-item-hover flex justify-between items-center"><span
+                                        class="text-softbrown transition-colors duration-300">Brioche Loaf</span><span
+                                        class="text-caramel font-medium price-glow transition-all duration-300">$9</span>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
                 </div>
+
                 <!-- Category 2 -->
-                <div class="border border-beige rounded-3xl p-8 hover:shadow-xl transition-shadow bg-cream gsap-fade-up"
-                    style="transition-delay: 100ms;">
-                    <h3 class="font-playfair text-2xl text-chocolate border-b border-chocolate/10 pb-4 mb-4">Pastries
-                    </h3>
-                    <ul class="space-y-4">
-                        <li class="flex justify-between items-center"><span class="text-softbrown">Butter
-                                Croissant</span><span class="text-caramel font-medium">$5</span></li>
-                        <li class="flex justify-between items-center"><span class="text-softbrown">Pain au
-                                Chocolat</span><span class="text-caramel font-medium">$6</span></li>
-                        <li class="flex justify-between items-center"><span class="text-softbrown">Almond
-                                Danish</span><span class="text-caramel font-medium">$6</span></li>
-                        <li class="flex justify-between items-center"><span class="text-softbrown">Fruit
-                                Tartlet</span><span class="text-caramel font-medium">$7</span></li>
-                    </ul>
+                <div class="menu-card-3d">
+                    <div class="menu-card-inner rounded-3xl p-8 bg-cream h-full relative">
+                        <div class="menu-content-pop relative z-10">
+                            <h3 class="font-playfair text-2xl text-chocolate border-b border-chocolate/10 pb-4 mb-4">
+                                Pastries</h3>
+                            <ul class="space-y-4">
+                                <li class="menu-item-hover flex justify-between items-center"><span
+                                        class="text-softbrown transition-colors duration-300">Butter
+                                        Croissant</span><span
+                                        class="text-caramel font-medium price-glow transition-all duration-300">$5</span>
+                                </li>
+                                <li class="menu-item-hover flex justify-between items-center"><span
+                                        class="text-softbrown transition-colors duration-300">Pain au
+                                        Chocolat</span><span
+                                        class="text-caramel font-medium price-glow transition-all duration-300">$6</span>
+                                </li>
+                                <li class="menu-item-hover flex justify-between items-center"><span
+                                        class="text-softbrown transition-colors duration-300">Almond Danish</span><span
+                                        class="text-caramel font-medium price-glow transition-all duration-300">$6</span>
+                                </li>
+                                <li class="menu-item-hover flex justify-between items-center"><span
+                                        class="text-softbrown transition-colors duration-300">Fruit Tartlet</span><span
+                                        class="text-caramel font-medium price-glow transition-all duration-300">$7</span>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
                 </div>
+
                 <!-- Category 3 -->
-                <div class="border border-beige rounded-3xl p-8 hover:shadow-xl transition-shadow bg-cream gsap-fade-up"
-                    style="transition-delay: 200ms;">
-                    <h3 class="font-playfair text-2xl text-chocolate border-b border-chocolate/10 pb-4 mb-4">Desserts
-                    </h3>
-                    <ul class="space-y-4">
-                        <li class="flex justify-between items-center"><span class="text-softbrown">Macarons
-                                (6)</span><span class="text-caramel font-medium">$15</span></li>
-                        <li class="flex justify-between items-center"><span class="text-softbrown">Tiramisu
-                                Cup</span><span class="text-caramel font-medium">$8</span></li>
-                        <li class="flex justify-between items-center"><span class="text-softbrown">Cheesecake
-                                Slice</span><span class="text-caramel font-medium">$7</span></li>
-                        <li class="flex justify-between items-center"><span class="text-softbrown">Eclair</span><span
-                                class="text-caramel font-medium">$5</span></li>
-                    </ul>
+                <div class="menu-card-3d">
+                    <div class="menu-card-inner rounded-3xl p-8 bg-cream h-full relative">
+                        <div class="menu-content-pop relative z-10">
+                            <h3 class="font-playfair text-2xl text-chocolate border-b border-chocolate/10 pb-4 mb-4">
+                                Desserts</h3>
+                            <ul class="space-y-4">
+                                <li class="menu-item-hover flex justify-between items-center"><span
+                                        class="text-softbrown transition-colors duration-300">Macarons (6)</span><span
+                                        class="text-caramel font-medium price-glow transition-all duration-300">$15</span>
+                                </li>
+                                <li class="menu-item-hover flex justify-between items-center"><span
+                                        class="text-softbrown transition-colors duration-300">Tiramisu Cup</span><span
+                                        class="text-caramel font-medium price-glow transition-all duration-300">$8</span>
+                                </li>
+                                <li class="menu-item-hover flex justify-between items-center"><span
+                                        class="text-softbrown transition-colors duration-300">Cheesecake
+                                        Slice</span><span
+                                        class="text-caramel font-medium price-glow transition-all duration-300">$7</span>
+                                </li>
+                                <li class="menu-item-hover flex justify-between items-center"><span
+                                        class="text-softbrown transition-colors duration-300">Eclair</span><span
+                                        class="text-caramel font-medium price-glow transition-all duration-300">$5</span>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
                 </div>
+
                 <!-- Category 4 -->
-                <div class="border border-beige rounded-3xl p-8 hover:shadow-xl transition-shadow bg-cream gsap-fade-up"
-                    style="transition-delay: 300ms;">
-                    <h3 class="font-playfair text-2xl text-chocolate border-b border-chocolate/10 pb-4 mb-4">Drinks</h3>
-                    <ul class="space-y-4">
-                        <li class="flex justify-between items-center"><span class="text-softbrown">Espresso</span><span
-                                class="text-caramel font-medium">$3</span></li>
-                        <li class="flex justify-between items-center"><span
-                                class="text-softbrown">Cappuccino</span><span class="text-caramel font-medium">$5</span>
-                        </li>
-                        <li class="flex justify-between items-center"><span class="text-softbrown">Matcha
-                                Latte</span><span class="text-caramel font-medium">$6</span></li>
-                        <li class="flex justify-between items-center"><span class="text-softbrown">Artisan
-                                Tea</span><span class="text-caramel font-medium">$4</span></li>
-                    </ul>
+                <div class="menu-card-3d">
+                    <div class="menu-card-inner rounded-3xl p-8 bg-cream h-full relative">
+                        <div class="menu-content-pop relative z-10">
+                            <h3 class="font-playfair text-2xl text-chocolate border-b border-chocolate/10 pb-4 mb-4">
+                                Drinks</h3>
+                            <ul class="space-y-4">
+                                <li class="menu-item-hover flex justify-between items-center"><span
+                                        class="text-softbrown transition-colors duration-300">Espresso</span><span
+                                        class="text-caramel font-medium price-glow transition-all duration-300">$3</span>
+                                </li>
+                                <li class="menu-item-hover flex justify-between items-center"><span
+                                        class="text-softbrown transition-colors duration-300">Cappuccino</span><span
+                                        class="text-caramel font-medium price-glow transition-all duration-300">$5</span>
+                                </li>
+                                <li class="menu-item-hover flex justify-between items-center"><span
+                                        class="text-softbrown transition-colors duration-300">Matcha Latte</span><span
+                                        class="text-caramel font-medium price-glow transition-all duration-300">$6</span>
+                                </li>
+                                <li class="menu-item-hover flex justify-between items-center"><span
+                                        class="text-softbrown transition-colors duration-300">Artisan Tea</span><span
+                                        class="text-caramel font-medium price-glow transition-all duration-300">$4</span>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
                 </div>
+
             </div>
 
-            <div class="text-center mt-12">
+            <div class="text-center mt-16 perspective-container">
                 <button
-                    class="px-8 py-3 border-2 border-chocolate text-chocolate rounded-full font-medium hover:bg-chocolate hover:text-cream transition-colors">Download
-                    Full Menu (PDF)</button>
+                    class="menu-btn-3d px-8 py-4 border-2 border-chocolate text-chocolate rounded-full font-medium shadow-sm flex items-center justify-center mx-auto gap-2">
+                    Download Full Menu <span class="text-xs uppercase tracking-widest opacity-70">(PDF)</span>
+                </button>
             </div>
         </div>
     </section>
@@ -1506,6 +1640,85 @@
 
     <script>
         window.addEventListener('load', () => {
+            // --- MENU SECTION: NON-SLIDING CINEMATIC ANIMATIONS ---
+
+            // 1. Entrance (Fades, Zooms, Optical Blurs, and 3D Flips ONLY)
+            const menuEnterTl = gsap.timeline({
+                scrollTrigger: {
+                    trigger: "#menu",
+                    start: "top 75%",
+                    toggleActions: "play none none reverse"
+                }
+            });
+
+            menuEnterTl.from(".menu-anim-heading", {
+                scale: 1.15,            // Zoom In
+                filter: "blur(12px)",   // Creative cinematic focus pull
+                opacity: 0,             // Fade In
+                duration: 1.4,
+                ease: "power3.out"
+            })
+                .from(".menu-anim-divider", {
+                    scaleX: 0,              // Center-out expansion
+                    opacity: 0,
+                    duration: 0.8,
+                    ease: "power4.out"
+                }, "-=1.0")
+                .from(".menu-card-3d", {
+                    rotateX: -30,           // 3D fold reveal (No positional sliding)
+                    scale: 0.9,             // Zoom In
+                    opacity: 0,             // Fade In
+                    duration: 1.2,
+                    stagger: 0.15,
+                    ease: "back.out(1.2)",
+                    clearProps: "transform" // Critical: release to vanilla JS hover
+                }, "-=0.6")
+                .from(".menu-btn-3d", {
+                    scale: 0.85,
+                    opacity: 0,
+                    filter: "blur(8px)",
+                    /* REMOVED the blur filter to prevent the browser rendering glitch */
+                    duration: 1.2,
+                    ease: "back.out(1.5)",
+                    clearProps: "all"       /* CHANGED to 'all' so it cleans up perfectly */
+                }, "-=0.8");
+
+            // 2. Scroll Exit (Fades and Zooms Out ONLY)
+            gsap.to(".menu-card-container", {
+                scale: 0.92,            // Zoom out deeply
+                opacity: 0,             // Fade Out
+                filter: "blur(5px)",    // Out of focus
+                ease: "none",
+                scrollTrigger: {
+                    trigger: "#menu",
+                    start: "bottom 85%",
+                    end: "bottom top",
+                    scrub: 1
+                }
+            });
+
+            // 3. Immersive 3D Hover Interactions for Menu Cards
+            const menuCardsInner = document.querySelectorAll('.menu-card-inner');
+            menuCardsInner.forEach(card => {
+                card.addEventListener('mousemove', (e) => {
+                    const rect = card.getBoundingClientRect();
+                    const x = e.clientX - rect.left;
+                    const y = e.clientY - rect.top;
+                    const centerX = rect.width / 2;
+                    const centerY = rect.height / 2;
+
+                    // Subtle tilt tied ONLY to rotation (no translations/sliding)
+                    const rotateX = ((y - centerY) / centerY) * -8; // Max 8 degrees
+                    const rotateY = ((x - centerX) / centerX) * 8;
+
+                    card.style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) scale3d(1.02, 1.02, 1.02)`;
+                });
+
+                card.addEventListener('mouseleave', () => {
+                    // Smooth reset back to 0
+                    card.style.transform = `perspective(1000px) rotateX(0deg) rotateY(0deg) scale3d(1, 1, 1)`;
+                });
+            });
             const loader = document.getElementById('loader');
             loader.style.opacity = '0';
             setTimeout(() => loader.style.display = 'none', 1000);
