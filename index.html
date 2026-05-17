@@ -2973,7 +2973,7 @@
         gsap.registerPlugin(ScrollTrigger);
         // --- SIGNATURE CAKES: CINEMATIC REVEALS & 3D PHYSICS ---
 
-        // 1. Enter Animation: FADE IN, SLIDE IN, ZOOM IN
+        // 1. Enter Animation: FADE IN, SLIDE IN, ZOOM IN (Using fromTo to prevent glitches)
         const cakeEnterTl = gsap.timeline({
             scrollTrigger: {
                 trigger: "#signature-cakes",
@@ -2983,42 +2983,32 @@
         });
 
         // Staggered Heading Elements
-        cakeEnterTl.from(".cake-heading-el", {
-            y: 60,                // Slide In
-            opacity: 0,           // Fade In
-            rotateX: -40,         // 3D fold reveal
-            duration: 1.2,
-            stagger: 0.15,
-            ease: "back.out(1.2)"
-        })
-            // Navigation Buttons
-            .from(".cake-nav-container", {
-                x: 40,                // Slide In (From Right)
-                scale: 0.8,           // Zoom In
-                opacity: 0,           // Fade In
-                duration: 1,
-                ease: "power3.out"
-            }, "-=0.8")
-            // Entire Swiper Container
-            .from(".cake-swiper", {
-                y: 100,               // Slide In (Bottom)
-                scale: 0.9,           // Zoom In
-                opacity: 0,           // Fade In
-                duration: 1.4,
-                ease: "power4.out"
-            }, "-=1.0");
+        cakeEnterTl.fromTo(".cake-heading-el", 
+            { y: 60, opacity: 0, rotateX: -40 },
+            { y: 0, opacity: 1, rotateX: 0, duration: 1.2, stagger: 0.15, ease: "back.out(1.2)" }
+        )
+        // Navigation Buttons
+        .fromTo(".cake-nav-container", 
+            { x: 40, scale: 0.8, opacity: 0 },
+            { x: 0, scale: 1, opacity: 1, duration: 1, ease: "power3.out" }, 
+            "-=0.8"
+        )
+        // Entire Swiper Container
+        .fromTo(".cake-swiper", 
+            { y: 100, scale: 0.9, opacity: 0 },
+            { y: 0, scale: 1, opacity: 1, duration: 1.4, ease: "power4.out", clearProps: "transform" }, 
+            "-=1.0"
+        );
 
         // 2. Exit Animation: FADE OUT, SLIDE OUT, ZOOM OUT
-        // 2. Exit Animation: FADE OUT, SLIDE OUT, ZOOM OUT
-        gsap.to(".cake-header-container, .cake-swiper", {
-            y: -120,
-            scale: 0.9,
+        // TARGETING THE PARENT (#signature-cakes) to prevent fighting with the entrance animation
+        gsap.to("#signature-cakes", {
+            scale: 0.95,
             opacity: 0,
             ease: "none",
-            immediateRender: false, // <-- ADDED: Fixes the refresh/disappearing glitch
             scrollTrigger: {
                 trigger: "#signature-cakes",
-                start: "bottom 80%",    // <-- CHANGED: Now it only fades when you actually leave the section
+                start: "bottom 85%",    
                 end: "bottom top",
                 scrub: 1
             }
